@@ -11,9 +11,7 @@ using POCloudAPI.Entities;
 
 namespace POCloudAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class APIUsersController : ControllerBase
+    public class APIUsersController : BaseAPIController
     {
         private DataContext _context;
 
