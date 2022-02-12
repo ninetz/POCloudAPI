@@ -10,7 +10,8 @@ import { AccountService } from '../_Services/account.service';
 })
 export class NavigationBarComponent implements OnInit {
   
-  constructor(public accountService: AccountService,private router: Router) { }
+  constructor(public accountService: AccountService, private router: Router
+  ) { }
 
   ngOnInit(): void {
     
