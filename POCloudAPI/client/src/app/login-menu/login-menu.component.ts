@@ -1,4 +1,5 @@
   import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '../_Services/account.service';
 
 @Component({
@@ -8,17 +9,15 @@ import { AccountService } from '../_Services/account.service';
 })
 export class LoginMenuComponent implements OnInit {
   model: any = {}
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,private router: Router) { }
 
   ngOnInit(): void {
   }
   login() {
     this.accountService.login(this.model).subscribe(response => {
+      this.router.navigateByUrl("/")
       console.log(response)
-      this.accountService.loggedIn = true
     }, error => { console.log(error) })
   }
-  logout() {
-    this.accountService.loggedIn = false
-  }
+
 }
