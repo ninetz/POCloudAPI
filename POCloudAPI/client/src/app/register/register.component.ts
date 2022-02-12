@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../_Services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
   model: any = {}
-  constructor() { }
-
+  constructor(private accountService: AccountService) { }
+  users: any;
   ngOnInit(): void {
   }
-  register() { console.log(this.model) }
+  register() { this.accountService.register(this.model).subscribe(response => { console.log(response) }, error => {console.log(error) }) }
   cancel() { console.log('cancelled') }
+  getUsers() {}
 }

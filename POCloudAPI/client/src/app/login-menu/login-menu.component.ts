@@ -8,7 +8,6 @@ import { AccountService } from '../_Services/account.service';
 })
 export class LoginMenuComponent implements OnInit {
   model: any = {}
-  loggedIn: boolean
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
@@ -16,7 +15,10 @@ export class LoginMenuComponent implements OnInit {
   login() {
     this.accountService.login(this.model).subscribe(response => {
       console.log(response)
-      this.loggedIn = true
+      this.accountService.loggedIn = true
     }, error => { console.log(error) })
+  }
+  logout() {
+    this.accountService.loggedIn = false
   }
 }
