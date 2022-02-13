@@ -10,8 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { LoginMenuComponent } from './login-menu/login-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { ToastrModule } from 'ngx-toastr';
+
 import { UploadFileComponent } from './upload-file/upload-file.component'
+import { SharedModule } from './shared.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { UploadFileComponent } from './upload-file/upload-file.component'
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
-    ToastrModule.forRoot({positionClass: "toast-middle-right"})
+    SharedModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

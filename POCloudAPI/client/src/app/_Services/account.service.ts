@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { GlobalVariable } from '../global';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { User } from '../_models/user';
 export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1)
   currentUser$ = this.currentUserSource.asObservable() 
-  baseUrl = 'https://localhost:7156/api/';
+  baseUrl = GlobalVariable.BASE_API_URL;
   constructor(private http: HttpClient) { }
 
   login(model: any) {
