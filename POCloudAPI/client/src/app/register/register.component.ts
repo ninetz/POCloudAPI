@@ -10,6 +10,7 @@ export class RegisterComponent implements OnInit {
   model: any = {}
   constructor(private accountService: AccountService, private toastr: ToastrService) { }
   users: any;
+  validationErrors: any;
   ngOnInit(): void {
   }
   register() {
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
       console.log(response)
     }, error => {
       console.log(error)
-      this.toastr.error(error.error)
+      this.validationErrors = error;
+      
     })
   }
   cancel() { console.log('cancelled') }

@@ -7,7 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [],
   imports: [
     CommonModule,
-    ToastrModule.forRoot({ positionClass: "toast-middle-right" }),
+    ToastrModule.forRoot({ positionClass: "toast-center-center" }),
     MatDialogModule
   ],
   exports: [
