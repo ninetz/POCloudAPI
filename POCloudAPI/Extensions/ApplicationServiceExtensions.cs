@@ -10,7 +10,7 @@ namespace POCloudAPI.Extensions
 
             services.AddScoped<ITokenService, TokenService>();
             services.AddDbContext<DataContext>(options => {
-                options.UseSqlite(config.GetConnectionString("DefaultConnections"));
+                options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             }
             );
             return services;

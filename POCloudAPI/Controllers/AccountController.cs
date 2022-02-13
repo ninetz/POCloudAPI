@@ -28,8 +28,8 @@ namespace POCloudAPI.Controllers
             {
                 Username = registerDTO.username,
                 Password = registerDTO.password,
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.password)),
-                passwordSalt = hmac.Key
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.password)),
+                PasswordSalt = hmac.Key
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -45,11 +45,11 @@ namespace POCloudAPI.Controllers
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == loginDTO.username.ToLower());
             if (user == null) return BadRequest("Invalid username.");
-            using var hmac = new HMACSHA512(user.passwordSalt);
+            using var hmac = new HMACSHA512(user.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.password));
             for (int i = 0; i < computedHash.Length; i++)
             {
-                if (computedHash[i] != user.passwordHash[i])
+                if (computedHash[i] != user.PasswordHash[i])
                 {
                     return BadRequest("Wrong password.");
                 }

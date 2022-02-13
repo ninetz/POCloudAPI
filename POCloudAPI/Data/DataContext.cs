@@ -10,5 +10,6 @@ namespace POCloudAPI.Data
         }
 
         public DbSet<APIUser> Users { get; set; }
+        public DbSet<APIFile> Files { get; set; }
     }
 }
