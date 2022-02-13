@@ -7,6 +7,7 @@ namespace POCloudAPI.DTO
         [Required]
         public string? username { get; set; }
         [Required]
+        [StringLength(32, MinimumLength = 8)]
         public string? password { get; set; }
     }
 }

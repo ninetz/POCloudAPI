@@ -1,0 +1,9 @@
+<h4>Internal server error - refreshing the page will make the error disappear!</h4>
+<h5 class="font-weight-bold">    It may be that the API is down. Double-check that you are on the correct URL please.</h5>
+<ng-container *ngIf="error">
+  <h5 class='text-danger'>Error: {{error.message}}</h5>
+
+  <p>StackTrace:</p>
+  <code class="mt-5" style="background-color: whitesmoke;">{{error.details}}</code>
+</ng-container>
+

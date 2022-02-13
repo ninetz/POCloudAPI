@@ -17,9 +17,6 @@ export class LoginMenuComponent implements OnInit {
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl("/")
       console.log(response)
-    }, error => {
-      console.log(error)
-      this.toastr.error(error.error)
     })
   }
 
