@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadFileComponent } from './upload-file/upload-file.component'
 
+
 @NgModule({
   declarations: [
     AppComponent,
