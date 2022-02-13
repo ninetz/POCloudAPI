@@ -10,13 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { LoginMenuComponent } from './login-menu/login-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-
 import { UploadFileComponent } from './upload-file/upload-file.component'
 import { SharedModule } from './shared.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { ChangepasswordComponent } from './login-menu/changepassword/changepassword.component';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     UploadFileComponent,
     TestErrorsComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,

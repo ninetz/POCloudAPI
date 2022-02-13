@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { HomeComponent } from './home/home.component';
+import { ChangepasswordComponent } from './login-menu/changepassword/changepassword.component';
 import { LoginMenuComponent } from './login-menu/login-menu.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
@@ -16,12 +17,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'uploadfile', component: UploadFileComponent, canActivate: [AuthGuard] },
+      { path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginMenuComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
+
 
   { path: '**', component: NotFoundComponent, pathMatch: 'full' }
 

@@ -56,5 +56,25 @@ namespace POCloudAPI.Controllers
             }
             return new UserDTO { Username = user.Username, Token = _tokenService.createToken(user) };
         }
+        [HttpPost("changepassword")]
+        public async Task<ActionResult<UserDTO>> changepassword(ChangePasswordDTO changePasswordDTO)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == changePasswordDTO.Username.ToLower());
+            if (user == null) return BadRequest("Invalid user.");
+            if (changePasswordDTO.OldPassword != user.Password) { return BadRequest("Wrong password."); };
+            using var hmac = new HMACSHA512(user.PasswordSalt);
+            var newUser = new APIUser
+            {
+                Username = changePasswordDTO.Username,
+                Password = changePasswordDTO.NewPassword,
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(changePasswordDTO.NewPassword)),
+                PasswordSalt = hmac.Key
+            };
+            user.Password = newUser.Password;
+            user.PasswordHash = newUser.PasswordHash;
+            user.PasswordSalt = newUser.PasswordSalt;
+            await _context.SaveChangesAsync();
+            return new UserDTO { Username = user.Username, Token = _tokenService.createToken(user) };
+        }
     }
 }
