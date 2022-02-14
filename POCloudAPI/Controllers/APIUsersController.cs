@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using POCloudAPI.Data;
+using POCloudAPI.DTO;
 using POCloudAPI.Entities;
 
 namespace POCloudAPI.Controllers
@@ -15,21 +17,24 @@ namespace POCloudAPI.Controllers
     public class APIUsersController : BaseAPIController
     {
         private DataContext _context;
+        private readonly IMapper mapper;
 
-        public APIUsersController(DataContext context) {
+        public APIUsersController(DataContext context, IMapper mapper) {
             _context = context;
+            this.mapper = mapper;
         }
-        [Authorize]
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<APIUser>>> getAPIUsers() {
 
-            return await _context.Users.ToListAsync(); 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MemberDTO>>> getAPIUsers() {
+            var users = await _context.Users.ToListAsync();
+            return Ok(mapper.Map<IEnumerable<MemberDTO>>(users));
         }
-        [Authorize]
-        [HttpGet("{Id}")]
-        public async Task<ActionResult<APIUser>> getAPIUsersById(long id)
+
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MemberDTO>> getAPIUsersByUsername(String username)
         {
-            return await _context.Users.FindAsync(id);
+            var user = await _context.Users.SingleAsync(x => x.Username == username);
+            return mapper.Map<MemberDTO>(user);
         }
     }
 }

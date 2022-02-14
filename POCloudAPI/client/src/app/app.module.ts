@@ -4,19 +4,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { NavigationBarComponent } from './Components/navigation-bar/navigation-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { LoginMenuComponent } from './login-menu/login-menu.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { UploadFileComponent } from './upload-file/upload-file.component'
+import { LoginMenuComponent } from './Components/login-menu/login-menu.component';
+import { HomeComponent } from './Components/home/home.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { UploadFileComponent } from './Components/upload-file/upload-file.component'
 import { SharedModule } from './shared.module';
-import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { TestErrorsComponent } from './Components/errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { ChangepasswordComponent } from './login-menu/changepassword/changepassword.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { ServerErrorComponent } from './Components/errors/server-error/server-error.component';
+import { ChangepasswordComponent } from './Components/login-menu/changepassword/changepassword.component';
 
 
 @NgModule({

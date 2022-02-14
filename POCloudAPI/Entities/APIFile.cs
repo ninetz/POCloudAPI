@@ -14,6 +14,8 @@ namespace POCloudAPI.Entities
 
         public APIUser User { get; set; }
 
+        public DateTime created { get; set; }
+        public DateTime LastModified { get; set; }
         public int APIUserId { get; set; }
     }
 }

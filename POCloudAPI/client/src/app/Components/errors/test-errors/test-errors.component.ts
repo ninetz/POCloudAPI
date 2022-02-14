@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { GlobalVariable } from '../../global';
+import { GlobalVariable } from '../../../global';
 
 @Component({
   selector: 'app-test-errors',

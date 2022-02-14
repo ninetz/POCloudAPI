@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { HomeComponent } from './home/home.component';
-import { ChangepasswordComponent } from './login-menu/changepassword/changepassword.component';
-import { LoginMenuComponent } from './login-menu/login-menu.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { RegisterComponent } from './register/register.component';
-import { UploadFileComponent } from './upload-file/upload-file.component';
+import { ServerErrorComponent } from './Components/errors/server-error/server-error.component';
+import { HomeComponent } from './Components/home/home.component';
+import { ChangepasswordComponent } from './Components/login-menu/changepassword/changepassword.component';
+import { LoginMenuComponent } from './Components/login-menu/login-menu.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { UploadFileComponent } from './Components/upload-file/upload-file.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [

@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AccountService } from '../../_Services/account.service';
+import { AccountService } from '../../../_Services/account.service';
 
 @Component({
   selector: 'app-changepassword',
