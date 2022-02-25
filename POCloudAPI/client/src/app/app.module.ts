@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { ServerErrorComponent } from './Components/errors/server-error/server-error.component';
 import { ChangepasswordComponent } from './Components/login-menu/changepassword/changepassword.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ChangepasswordComponent } from './Components/login-menu/changepassword/
     SharedModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
