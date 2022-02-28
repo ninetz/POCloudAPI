@@ -4,7 +4,9 @@ using POCloudAPI.Data;
 using POCloudAPI.Entities;
 using POCloudAPI.Extensions;
 using POCloudAPI.Middleware;
-
+//TODO add certificates component ( CISCO, python etc )
+// TODO add file upload
+// TODO add JWToken database verification
 var builder = WebApplication.CreateBuilder(args);
 
 // add services to the container
