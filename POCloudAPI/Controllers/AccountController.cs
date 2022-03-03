@@ -19,27 +19,28 @@ namespace POCloudAPI.Controllers
             _context = context;
             this._tokenService = tokenService;
         }
+
         [HttpPost("register")]
         public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
         {
             if (await UserExists(registerDTO.username)) return BadRequest("Username is taken.");
             using var hmac = new HMACSHA512();
+
             var user = new APIUser
             {
                 Username = registerDTO.username,
                 Password = registerDTO.password,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.password)),
-                PasswordSalt = hmac.Key
+                PasswordSalt = hmac.Key,
+                Created = DateTime.Now,
+                LastLogin = DateTime.Now
             };
+            await UpdateToken(user);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            return new UserDTO { Username = user.Username, Token = _tokenService.createToken(user)};
+            return new UserDTO { Username = user.Username, Token = user.CurrentToken };
         }
 
-        private async Task<bool> UserExists(string username)
-        {
-            return await _context.Users.AnyAsync(x => x.Username.ToLower() == username.ToLower());
-        }
         [HttpPost("login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
@@ -54,7 +55,9 @@ namespace POCloudAPI.Controllers
                     return BadRequest("Wrong password.");
                 }
             }
-            return new UserDTO { Username = user.Username, Token = _tokenService.createToken(user) };
+            await UpdateToken(user);
+            await updateUserLoginTime(user);
+            return new UserDTO { Username = user.Username, Token = user.CurrentToken };
         }
         [HttpPost("changepassword")]
         public async Task<ActionResult<UserDTO>> changepassword(ChangePasswordDTO changePasswordDTO)
@@ -73,8 +76,41 @@ namespace POCloudAPI.Controllers
             user.Password = newUser.Password;
             user.PasswordHash = newUser.PasswordHash;
             user.PasswordSalt = newUser.PasswordSalt;
+            await UpdateToken(user);
             await _context.SaveChangesAsync();
-            return new UserDTO { Username = user.Username, Token = _tokenService.createToken(user) };
+            await updateUserLoginTime(user);
+            return new UserDTO { Username = user.Username, Token = user.CurrentToken };
+        }
+        [HttpPost("verifyuseridentity")]
+        public async Task<ActionResult<UserDTO>> VerifyUserIdentity(UserDTO udto)
+        {
+
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == udto.Username.ToLower());
+            if (user == null) return Unauthorized("User " + udto.Username + " doesn't exist.");
+            if (user.CurrentToken == null) return Unauthorized("User " + udto.Username + " doesn't have a token present in DB.");
+            if (udto.Token == null) return Unauthorized("User " + udto.Username + " has no token present.");
+            if (udto.Token == user.CurrentToken) return Ok();
+            return Unauthorized("Invalid token.");
+        }
+        private async Task<string> UpdateToken(APIUser user)
+        {
+            user.CurrentToken = _tokenService.createToken(user);
+            await _context.SaveChangesAsync();
+            return user.CurrentToken;
+        }
+        private async Task<bool> UserExists(string username)
+        {
+            return await _context.Users.AnyAsync(x => x.Username.ToLower() == username.ToLower());
+        }
+
+        private async Task<bool> updateUserLoginTime(APIUser apiUser)
+        {
+            if (apiUser == null) return false;
+            apiUser.LastLogin = DateTime.Now;
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
+
+
 }

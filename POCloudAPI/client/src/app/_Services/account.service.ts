@@ -53,5 +53,13 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null)
+    
   }
+  verifyUser(user: User) {
+    let model: any = {};
+    model.username = JSON.parse(localStorage.getItem('user')).username
+    model.token = JSON.parse(localStorage.getItem('user')).token
+    return this.http.post(this.baseUrl + "Account/verifyuseridentity", model).pipe()
+  }
+  
 }
