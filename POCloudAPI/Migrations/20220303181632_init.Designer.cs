@@ -12,8 +12,8 @@ using POCloudAPI.Data;
 namespace POCloudAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220303143409_CurrentToken")]
-    partial class CurrentToken
+    [Migration("20220303181632_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,9 +74,6 @@ namespace POCloudAPI.Migrations
 
                     b.Property<DateTime>("LastLogin")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("varbinary(max)");

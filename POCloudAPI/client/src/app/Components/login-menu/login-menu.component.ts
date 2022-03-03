@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginMenuComponent implements OnInit {
   model: any = {}
   constructor(private accountService: AccountService, private router: Router, private toastr: ToastrService) { }
-  validationErrors: any;
+  validationErrors: any = {};
   ngOnInit(): void {
   }
   login() {

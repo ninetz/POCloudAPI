@@ -10,7 +10,7 @@ namespace POCloudAPI.Entities
         public int Id { get; set; }
         public string? FullNameOfFile { get; set; }
         
-        public Byte[] FileStreamData { get; set; }
+        public Byte[]? FileStreamData { get; set; }
 
         public APIUser User { get; set; }
 

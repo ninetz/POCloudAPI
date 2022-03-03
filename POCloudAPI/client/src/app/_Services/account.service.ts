@@ -55,6 +55,12 @@ export class AccountService {
     this.currentUserSource.next(null)
     
   }
+  getUserToken() {
+    return JSON.parse(localStorage.getItem('user')).token
+  }
+  getUsername() {
+    return JSON.parse(localStorage.getItem('user')).username
+  }
   verifyUser(user: User) {
     let model: any = {};
     model.username = JSON.parse(localStorage.getItem('user')).username

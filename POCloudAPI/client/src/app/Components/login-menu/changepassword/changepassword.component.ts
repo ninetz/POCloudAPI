@@ -11,7 +11,8 @@ import { AccountService } from '../../../_Services/account.service';
 })
 export class ChangepasswordComponent implements OnInit {
   model: any = {}
-  constructor(private accountService: AccountService, private router: Router, private dialog: MatDialog ) { }
+  validationErrors: any = {};
+  constructor(private accountService: AccountService, private router: Router, private dialog: MatDialog, private toastr: ToastrService ) { }
   @ViewChild('ChangePasswordSuccessDialog') changePasswordSuccessDialog: TemplateRef<any>;
   ngOnInit(): void {
   }
@@ -21,8 +22,13 @@ export class ChangepasswordComponent implements OnInit {
       setTimeout(() => { this.dialog.closeAll()}, 2500)
       this.dialog.open(this.changePasswordSuccessDialog).afterClosed().subscribe(response => {
         this.router.navigateByUrl("/")
+      }, error => {
+        console.log(error)
+        this.validationErrors = error;
       })
-    }
+    }, error => {
+      console.log(error)
+      this.validationErrors = error;}
     )
   }
 }

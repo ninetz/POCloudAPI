@@ -1,6 +1,9 @@
+import { Byte } from "@angular/compiler/src/util";
+
 export interface filesObj {
-  id: number
-  fullnameoffile: string
-  created: Date
-  lastModified: Date
+  fileName: string;
+  fileSize: number;
+  fileAsBase64: string;
+  token: string;
+  username: string;
 }

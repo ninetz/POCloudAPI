@@ -11,7 +11,7 @@ export class RegisterComponent implements OnInit {
   model: any = {}
   constructor(private accountService: AccountService, private toastr: ToastrService, private router: Router) { }
   users: any;
-  validationErrors: any;
+  validationErrors: any = {};
   ngOnInit(): void {
   }
   register() {

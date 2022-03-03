@@ -2,11 +2,11 @@
 {
     public class APIFileDTO
     {
-        public int Id { get; set; }
-        public string? FullNameOfFile { get; set; }
+        public string? FileName { get; set; }
+        public string? FileAsBase64 { get; set; }
 
-        public DateTime created { get; set; }
-        public DateTime LastModified { get; set; }
-        public bool isMain { get; set; }
+        public string? Username { get; set; }
+
+        public string? Token { get; set; } 
     }
 }
