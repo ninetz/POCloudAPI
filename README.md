@@ -9,3 +9,19 @@ MS visual studio with asp.net development installed ( install asp.net developmen
 
 Angular (Install npm and run npm install -g @angular/cli ) -> open client folder and run ng serve in command line
 
+// 
+Sample appsettings
+
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=XXXX;Database=master;User Id=sa;password=XXXXX;"
+  },
+  "TokenKey": "blablablablabla bla",
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
+
