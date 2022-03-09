@@ -12,6 +12,7 @@ import { FileService } from '../../_Services/file.service';
 })
 export class UploadFileComponent implements OnInit {
   fileName = '';
+  
   requiredFileType: string;
   theFile: filesObj = {
     fileName: "", fileAsBase64: "", fileSize: 0, token: "", username: ""};
@@ -29,7 +30,8 @@ export class UploadFileComponent implements OnInit {
        formData.append("thumbnail", file);
         this.theFile.fileName = file.name;
         this.theFile.fileSize = file.size
-        this.theFile.fileAsBase64 = await this.file2Base64(file);
+        var reader = new FileReader();
+        //this.theFile.fileAsBase64 = file.text();
         this.theFile.token = this.accountService.getUserToken()
         this.theFile.username = this.accountService.getUsername()
         
@@ -56,13 +58,7 @@ export class UploadFileComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-   file2Base64 = (file: File): Promise<string> => {
-    return new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result?.toString() || '');
-      reader.onerror = error => reject(error);
-    })
-  }
+  
+  
 }
 
