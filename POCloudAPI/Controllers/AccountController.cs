@@ -23,13 +23,13 @@ namespace POCloudAPI.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
         {
-            if (await UserExists(registerDTO.username)) return BadRequest("Username is taken.");
+            if (await UserExists(registerDTO.Username)) return BadRequest("Username is taken.");
             using var hmac = new HMACSHA512();
 
             var user = new APIUser
             {
-                Username = registerDTO.username,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.password)),
+                Username = registerDTO.Username,
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
                 PasswordSalt = hmac.Key,
                 Created = DateTime.Now,
                 LastLogin = DateTime.Now
@@ -43,15 +43,15 @@ namespace POCloudAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == loginDTO.username.ToLower());
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == loginDTO.Username.ToLower());
             if (user == null) return BadRequest("Invalid username.");
-            if (!CheckIfPasswordsMatch(user.PasswordSalt, user.PasswordHash, loginDTO.password)) return BadRequest("Invalid password");
+            if (!CheckIfPasswordsMatch(user.PasswordSalt, user.PasswordHash, loginDTO.Password)) return BadRequest("Invalid password");
             await UpdateToken(user);
             await updateUserLoginTime(user);
             return new UserDTO { Username = user.Username, Token = user.CurrentToken };
         }
         [HttpPost("changepassword")]
-        public async Task<ActionResult<UserDTO>> changepassword(ChangePasswordDTO changePasswordDTO)
+        public async Task<ActionResult<UserDTO>> Changepassword(ChangePasswordDTO changePasswordDTO)
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == changePasswordDTO.Username.ToLower());
             if (user == null) return BadRequest("Invalid user.");
@@ -69,10 +69,11 @@ namespace POCloudAPI.Controllers
         {
 
             var user = await _context.Users.SingleOrDefaultAsync(x => x.Username.ToLower() == udto.Username.ToLower());
+            if (udto.Token == user.CurrentToken) return Ok();
             if (user == null) return BadRequest("User " + udto.Username + " doesn't exist.");
             if (user.CurrentToken == null) return BadRequest("User " + udto.Username + " doesn't have a token present in DB.");
             if (udto.Token == null) return BadRequest("User " + udto.Username + " has no token present.");
-            if (udto.Token == user.CurrentToken) return Ok();
+
             return BadRequest("Invalid token.");
         }
 
