@@ -52,6 +52,18 @@ namespace POCloudAPI.Data
             await _context.Users.AddAsync(user);
             return true;
         }
+        public async Task<bool> VerifyUserIdentity(string username, string token) {
+            APIUser user = await getUserAsync(username);
+            // temp errormsg var, need to return error
+            var errormsg = "";
+            if (user == null) errormsg = ("User " + username + " doesn't exist.");
+            if (user.CurrentToken == null) errormsg = ("User " + username + " doesn't have a token present in DB.");
+            if (token == null) errormsg = ("User " + username + " has no token present.");
+            if (token == user.CurrentToken) return true;
+            return false;
+
+
+        }
         public bool CheckIfPasswordsMatch(byte[] userSalt, byte[] userHash, string inputRawPassword)
         {
             using var hmac = new HMACSHA512(userSalt);

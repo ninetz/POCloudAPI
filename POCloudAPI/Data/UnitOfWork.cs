@@ -19,6 +19,8 @@ namespace POCloudAPI.Data
 
         public IAPIUserRepository APIUserRepository => new APIUserRepository(_context, _mapper, _tokenService);
 
+        public IAPIFileRepository APIFileRepository => new APIFileRepository(_context, _mapper);
+
         public async Task<bool> PushChanges()
         {
             return await _context.SaveChangesAsync() > 0;

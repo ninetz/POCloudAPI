@@ -12,6 +12,6 @@ namespace POCloudAPI.Interfaces
         Task<bool> updateUserLoginTime(APIUser apiUser);
         Task<bool> AddUser(APIUser apiUser);
         bool CheckIfPasswordsMatch(byte[] userSalt, byte[] userHash, string inputRawPassword);
-
+        Task<bool> VerifyUserIdentity(string username, string token);
     }
 }
