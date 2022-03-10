@@ -20,7 +20,6 @@ import { ChangepasswordComponent } from './Components/login-menu/changepassword/
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MyCertificationsComponent } from './Components/Info-Tabs/my-certifications/my-certifications.component';
 import { MyCVComponent } from './Components/Info-Tabs/my-cv/my-cv.component';
-import { TermsAndConditionsComponent } from './Components/Info-Tabs/terms-and-conditions/terms-and-conditions.component';
 
 
 @NgModule({
@@ -37,7 +36,6 @@ import { TermsAndConditionsComponent } from './Components/Info-Tabs/terms-and-co
     ChangepasswordComponent,
     MyCertificationsComponent,
     MyCVComponent,
-    TermsAndConditionsComponent
   ],
   imports: [
     BrowserModule,

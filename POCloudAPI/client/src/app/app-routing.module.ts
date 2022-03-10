@@ -5,7 +5,6 @@ import { HomeComponent } from './Components/home/home.component';
 import { MyCertificationsComponent } from './Components/Info-Tabs/my-certifications/my-certifications.component';
 import { MyCVComponent } from './Components/Info-Tabs/my-cv/my-cv.component';
 import { MyProjectsComponent } from './Components/Info-Tabs/my-projects/my-projects.component';
-import { TermsAndConditionsComponent } from './Components/Info-Tabs/terms-and-conditions/terms-and-conditions.component';
 import { ChangepasswordComponent } from './Components/login-menu/changepassword/changepassword.component';
 import { LoginMenuComponent } from './Components/login-menu/login-menu.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
       { path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuard] },
     ]
   },
-  { path: 'termsandconditions', component: TermsAndConditionsComponent },
   { path: 'projects', component: MyProjectsComponent },
   { path: 'certificates', component: MyCertificationsComponent },
   { path: 'CV', component: MyCVComponent },
