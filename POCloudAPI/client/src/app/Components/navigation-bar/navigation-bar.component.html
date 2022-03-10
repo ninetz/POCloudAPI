@@ -7,9 +7,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
         <a class="nav-link" routerLink="/certificates">Certificates</a>
         <a class="nav-link" routerLink="/CV">CV</a>
+        <a class="nav-link" routerLink="/projects">Projects</a>
         <ng-container *ngIf="accountService.currentUser$ | async">
           <a class="nav-link" routerLink="/uploadfile" routerLinkActive="active">Upload a file</a>
 
@@ -23,18 +23,35 @@
       <div class="navbar-nav" *ngIf="!(accountService.currentUser$ | async)">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
         <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+
       </div>
       <div ngbDropdown class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
-        <button ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false" dropdownToggle>Logged in as {{user.knownAs || user.username | titlecase}}
+        <button ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false" dropdownToggle>
+          Logged in as {{user.knownAs || user.username | titlecase}}
         </button>
         <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
           <a class="nav-link" (click)="accountService.logout()" href="#">Logout</a>
-          <a class="nav-link"  routerLink="/changepassword">Change Password</a>
+          <a class="nav-link" routerLink="/changepassword">Change Password</a>
         </ul>
       </div>
 
     </div>
   </div>
+  <div>
+    <a class="nav-link" routerLink="/termsandconditions" routerLinkActive="active">Terms & Conditions</a>
+  </div>
+  
 
-
+</nav>
+<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/CV">CV</a>
+        </li>>
+       
+      </ul>
+    </div>
+  </div>
 </nav>
