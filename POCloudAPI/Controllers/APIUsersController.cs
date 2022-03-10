@@ -11,30 +11,30 @@ using Microsoft.EntityFrameworkCore;
 using POCloudAPI.Data;
 using POCloudAPI.DTO;
 using POCloudAPI.Entities;
+using POCloudAPI.Interfaces;
 
 namespace POCloudAPI.Controllers
 {
     public class APIUsersController : BaseAPIController
     {
-        private DataContext _context;
-        private readonly IMapper mapper;
+        private IUnitOfWork _UnitOfWork;
 
-        public APIUsersController(DataContext context, IMapper mapper) {
-            _context = context;
-            this.mapper = mapper;
+        public APIUsersController(IUnitOfWork UnitOfWork) {
+            this._UnitOfWork = UnitOfWork;
+
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<MemberDTO>>> getAPIUsers() {
-            var users = await _context.Users.ToListAsync();
-            return Ok(mapper.Map<IEnumerable<MemberDTO>>(users));
+            return Ok(await _UnitOfWork.APIUserRepository.getAllUsersAsync());
         }
 
         [HttpGet("{username}")]
-        public async Task<ActionResult<MemberDTO>> getAPIUsersByUsername(String username)
+        [Authorize]
+        public async Task<ActionResult<MemberDTO>> getAPIUserByUsername(String username)
         {
-            var user = await _context.Users.SingleAsync(x => x.Username == username);
-            return mapper.Map<MemberDTO>(user);
+            return Ok(await _UnitOfWork.APIUserRepository.getUserAsync(username));
         }
     }
 }

@@ -3,6 +3,7 @@ using POCloudAPI.Data;
 using POCloudAPI.Helpers;
 using POCloudAPI.JWTokens;
 using AutoMapper;
+using POCloudAPI.Interfaces;
 
 namespace POCloudAPI.Extensions
 {
@@ -12,6 +13,7 @@ namespace POCloudAPI.Extensions
 
             services.AddScoped<ITokenService, TokenService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<DataContext>(options => {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             }
