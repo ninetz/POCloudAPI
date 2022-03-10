@@ -18,6 +18,8 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { ServerErrorComponent } from './Components/errors/server-error/server-error.component';
 import { ChangepasswordComponent } from './Components/login-menu/changepassword/changepassword.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { MyCertificationsComponent } from './Components/Info-Tabs/my-certifications/my-certifications.component';
+import { MyCVComponent } from './Components/Info-Tabs/my-cv/my-cv.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    MyCertificationsComponent,
+    MyCVComponent
   ],
   imports: [
     BrowserModule,
