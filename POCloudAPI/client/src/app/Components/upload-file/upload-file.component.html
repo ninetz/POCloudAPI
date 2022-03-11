@@ -9,7 +9,7 @@
   <button mat-mini-fab color="primary" class="upload-btn"
           (click)="fileUpload.click()">
     
-
+    Upload
   </button>
 
 </div>
@@ -23,5 +23,17 @@
 
   <mat-icon class="cancel-upload" (click)="cancelUpload()"
             *ngIf="uploadProgress">delete_forever</mat-icon>
+
+</div>
+<div class="row mt-5" *ngIf="FilesInDB.length > 0">
+  <ul class="text-danger">
+    <li *ngFor="let fullNameOfFile of FilesInDB">
+      {{fullNameOfFile}}
+      <button mat-mini-fab color="primary" class="download-btn"
+              (click)="downloadFile(fullNameOfFile)">
+        Download
+      </button>
+    </li>
+  </ul>
 
 </div>

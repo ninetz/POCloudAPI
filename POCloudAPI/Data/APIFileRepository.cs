@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using POCloudAPI.DTO;
 using POCloudAPI.Entities;
 using POCloudAPI.Interfaces;
 
@@ -21,9 +22,18 @@ namespace POCloudAPI.Data
             return true;
         }
 
-        public async Task<APIFile> GetAPIFileAsync(string filename)
+        public async Task<IEnumerable<APIFileDTOSimple>> GetAllUserAPIFilesAsync(APIUser user)
         {
-            return await _context.Files.SingleOrDefaultAsync(x => filename == x.FullNameOfFile);
+            
+            var files = await _context.Files.Where(x => user == x.User).ToListAsync();
+
+            return _mapper.Map<IEnumerable<APIFileDTOSimple>>(files);
+        }
+
+        public async Task<APIFile> GetAPIFileAsync(APIFileDownloadDTO ApiFileDTO,APIUser user)
+        {
+           
+            return await _context.Files.FirstOrDefaultAsync(x => ApiFileDTO.FileName == x.FullNameOfFile && x.User == user);
         }
     }
 }

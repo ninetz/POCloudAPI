@@ -25,7 +25,7 @@ namespace POCloudAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        
         public async Task<ActionResult<IEnumerable<MemberDTO>>> getAPIUsers() {
             return Ok(await _UnitOfWork.APIUserRepository.getAllUsersAsync());
         }

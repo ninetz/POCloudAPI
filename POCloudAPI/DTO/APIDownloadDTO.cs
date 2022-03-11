@@ -2,10 +2,8 @@
 {
     public class APIDownloadDTO
     {
-        public string Token { get; set; }
-        public string Username { get; set; }
-
-        public string FileName { get; set; }
-            
+        public Byte[]? FileAsBase64 { get; set; }
+        public string? FileName { get; set; }
+        public string? ContentType { get; set; }
     }
 }

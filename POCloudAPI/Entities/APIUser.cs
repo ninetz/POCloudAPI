@@ -12,7 +12,6 @@ namespace POCloudAPI.Entities
         public DateTime Created { get; set; }
         public DateTime LastLogin { get; set; }
         public string? CurrentToken { get; set; }
-        public ICollection<APIFile>? UserFiles { get; set; }
 
     }
 }

@@ -9,6 +9,7 @@ namespace POCloudAPI.Helpers
         public AutoMapperProfiles() {
             CreateMap<APIUser, MemberDTO>();
             CreateMap<APIFile, APIFileDTO>();
+            CreateMap<APIFile, APIFileDTOSimple>();
         
         }
     }

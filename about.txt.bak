@@ -5,6 +5,7 @@ Auth guard
 Models
 Services
 Back end ( C# ASP.net ) features :
+Upload a file (into a DB)and list all files that I upload as a user
 Implementation of JWT authentication ( including verifying user's token with a DB when attempting to perform priviliged functions - for example changing the password)
-Database and datacontext used is MSSQL
+Database(datacontext) used is MSSQL
 Unit of work and repository pattern
