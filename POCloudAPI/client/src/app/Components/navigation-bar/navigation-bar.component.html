@@ -1,30 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <div class="container">
-    <a class="navbar-brand" routerLink="/">POCloud</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">POCloud</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="/certificates">Certificates</a>
-        <a class="nav-link" routerLink="/CV">CV</a>
-        <a class="nav-link" routerLink="/projects">Projects</a>
-        <ng-container *ngIf="accountService.currentUser$ | async">
-          <a class="nav-link" routerLink="/uploadfile" routerLinkActive="active">Upload a file</a>
 
-        </ng-container>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
 
-
-
-      </div>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav" *ngIf="!(accountService.currentUser$ | async)">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/certificates">Certificates</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/CV">CV</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/projects">Projects</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-nav-right" *ngIf="!(accountService.currentUser$ | async)">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
         <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-
-      </div>
+      </ul>
       <div ngbDropdown class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
         <button ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false" dropdownToggle>
           Logged in as {{user.knownAs || user.username | titlecase}}
@@ -34,9 +33,6 @@
           <a class="nav-link" routerLink="/changepassword">Change Password</a>
         </ul>
       </div>
-
     </div>
   </div>
-  
-
 </nav>
