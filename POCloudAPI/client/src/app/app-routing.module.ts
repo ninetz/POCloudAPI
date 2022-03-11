@@ -23,6 +23,7 @@ const routes: Routes = [
       { path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuard] },
     ]
   },
+
   { path: 'projects', component: MyProjectsComponent },
   { path: 'certificates', component: MyCertificationsComponent },
   { path: 'CV', component: MyCVComponent },

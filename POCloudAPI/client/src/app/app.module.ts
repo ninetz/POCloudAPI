@@ -22,6 +22,7 @@ import { MyCertificationsComponent } from './Components/Info-Tabs/my-certificati
 import { MyCVComponent } from './Components/Info-Tabs/my-cv/my-cv.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

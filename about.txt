@@ -1,3 +1,8 @@
+About me:
+I'm primarily a back-end software developer, still studying Information and Network Technologies at FRI, UNIZA.
+I am most excited to work in Android/.Net development environment :)
+
+
 
 Front end ( Angular ) features :
 Error interceptor
