@@ -1,36 +1,56 @@
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
- <script src="https://kit.fontawesome.com/6c295d3e42.js" crossorigin="anonymous"></script>
-  <nav class="navbar navbar-expand-xxl navbar-dark bg-primary">
-    <div class="container">
-      <a class="navbar-brand" href="/">POCloud</a>
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/certificates">Certificates</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/CV">CV</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/projects">Projects</a>
-          </li>
-        </ul>
+<nav class="navbar navbar-expand-xxl navbar-dark bg-primary">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">POCloud</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" routerLink="/certificates">Certificates</a>
+        <a class="nav-link" routerLink="/CV">CV</a>
+        <a class="nav-link" routerLink="/projects">Projects</a>
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <a class="nav-link" routerLink="/uploadfile" routerLinkActive="active">Upload a file</a>
 
-        <ul class="nav navbar-nav navbar-nav-right">
-          <li>
-            <a href="https://www.linkedin.com/in/peter-otruba-99361b223">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x text-black"></i>
-                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-            <a href="https://www.github.com/ninetz">
-              <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x text-black"></i>
-                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li> 
-        </ul>
+        </ng-container>
+
+
+
+      </div>
     </div>
-  </nav>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" *ngIf="!(accountService.currentUser$ | async)">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+        <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
 
+      </div>
+      <div ngbDropdown class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
+        <button ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false" dropdownToggle>
+          Logged in as {{user.knownAs || user.username | titlecase}}
+        </button>
+        <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+          <a class="nav-link" (click)="accountService.logout()" href="#">Logout</a>
+          <a class="nav-link" routerLink="/changepassword">Change Password</a>
+        </ul>
+      </div>
+
+      <ul class="nav navbar-nav navbar-nav-right">
+        <li>
+          <a href="https://www.linkedin.com/in/peter-otruba-99361b223">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x text-black"></i>
+              <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+          <a href="https://www.github.com/ninetz">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x text-black"></i>
+              <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+</nav>
