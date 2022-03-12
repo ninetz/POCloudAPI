@@ -8,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class MyCertificationsComponent implements OnInit {
 
   constructor() { }
-
+  previousImg: number = 1;
   ngOnInit(): void {
-  }
 
+  }
+  showImg(id) {
+
+    var obj = document.getElementById("picture" + this.previousImg)
+    if (obj != null)  obj.className = 'hide'
+    document.getElementById("picture" + id).className = 'show';
+
+    this.previousImg = id;
+  }
 }

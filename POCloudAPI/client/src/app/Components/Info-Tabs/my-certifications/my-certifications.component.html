@@ -1,12 +1,19 @@
 
-<figure>
-  <img src="/assets/img/CCNA2.jpg" alt="image">
-  <img src="/assets/img/CCNA1.jpg" alt="image">
-  <img src="/assets/img/PCAP.jpg" alt="image">
-  <p></p>
-  <img src="/assets/img/ECDL.jpg" alt="image">
-</figure>
-
-
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img id="picture1" src="/assets/img/PCAP.jpg" title="Silver" class="show img-responsive">
+      <img id="picture2" src="/assets/img/CCNA1.jpg" title="Black" class="hide img-responsive">
+      <img id="picture3" src="/assets/img/CCNA2.jpg" title="Black" class="hide img-responsive">
+      <img id="picture4" src="/assets/img/ECDL.jpg" title="Black" class="hide img-responsive">
+    </div>
+    <div class="btn-group me-2" role="group" aria-label="First group">
+      <button type="button" (click)="showImg(1)" class="btn btn-secondary">PCAP</button>
+      <button type="button" (click)="showImg(2)" class="btn btn-secondary">CCNAv7 1</button>
+      <button type="button" (click)="showImg(3)" class="btn btn-secondary">CCNAv7 2</button>
+      <button type="button" (click)="showImg(4)" class="btn btn-secondary">ECDL</button>
+    </div>
+  </div>
+</div>
 
 

@@ -1,6 +1,6 @@
 
   <script src="https://kit.fontawesome.com/6c295d3e42.js" crossorigin="anonymous"></script>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
       <a class="navbar-brand" href="/">POCloud</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor1" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,18 +22,18 @@
 
 
 
-          <ng-container *ngIf="accountService.currentUser$ | async">
+          <ng-container *ngIf="accountService.currentUser$ && hideDevComponents === true | async" >
             <a class="nav-link" routerLink="/uploadfile" routerLinkActive="active">Upload a file</a>
           </ng-container>
         </ul>
 
 
-        <ul class="nav navbar-nav navbar-nav-right" *ngIf="!(accountService.currentUser$ | async)">
+        <ul class="nav navbar-nav navbar-nav-right" *ngIf="!(accountService.currentUser$ && hideDevComponents === true | async)">
           <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
           <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
         </ul>
 
-        <div ngbDropdown class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
+        <div ngbDropdown class="dropdown" *ngIf="(accountService.currentUser$ && hideDevComponents === true | async) as user">
           <button ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false" dropdownToggle>
             Logged in as {{user.knownAs || user.username | titlecase}}
           </button>
@@ -48,7 +48,7 @@
         <li >
           <a href="https://www.linkedin.com/in/peter-otruba-99361b223">
             <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-circle fa-stack-2x text-black"></i>
               <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
             </span>
           </a>
