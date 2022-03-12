@@ -9,7 +9,6 @@
         <a class="nav-link" routerLink="/projects">Projects</a>
         <ng-container *ngIf="accountService.currentUser$ | async">
           <a class="nav-link" routerLink="/uploadfile" routerLinkActive="active">Upload a file</a>
-
         </ng-container>
 
 
