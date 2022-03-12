@@ -15,16 +15,23 @@
 }
 
 .btn {
-  margin: 20px !important;
+  opacity: 1;
+  background-color: transparent;
+  object-fit: cover;
+  border: none;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 button {
   opacity: 1;
   background-color: transparent;
-  font-size: 28px;
-
-  
+  object-fit: cover;
   border: none;
-
 }
+
+
 
 

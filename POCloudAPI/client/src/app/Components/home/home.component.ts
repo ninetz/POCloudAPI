@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     const cursorSpan = document.querySelector(".cursor");
 
     const textArray = ["Hi! I'm a back-end software developer studying Information and Network Technologies. I am most excited to work in Android/.Net development environments. Head over to projects to see what else I've done in my spare time :)"];
-    const typingDelay = 60;
+    const typingDelay = 40;
     const newTextDelay = 50; // Delay between current and next text
     let textArrayIndex = 0;
     let charIndex = 0;

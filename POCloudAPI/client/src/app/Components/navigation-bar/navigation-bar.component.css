@@ -1,6 +1,12 @@
+container {
+
+  width: 100%;
+}
 i {
   background-color: transparent;
 }
 socials {
   padding-right: 150px;
 }
+
+
