@@ -50,6 +50,7 @@ namespace POCloudAPI.Controllers
             if (!_UnitOfWork.APIUserRepository.CheckIfPasswordsMatch(user.PasswordSalt, user.PasswordHash, loginDTO.Password)) return BadRequest("Invalid password");
             await _UnitOfWork.APIUserRepository.UpdateToken(user);
             await _UnitOfWork.APIUserRepository.updateUserLoginTime(user);
+            await _UnitOfWork.PushChanges();
             return new UserDTO { Username = user.Username, Token = user.CurrentToken };
         }
         [HttpPost("changepassword")]
@@ -62,8 +63,9 @@ namespace POCloudAPI.Controllers
             user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(changePasswordDTO.NewPassword));
             user.PasswordSalt = hmac.Key;
             await _UnitOfWork.APIUserRepository.UpdateToken(user);
-            await _UnitOfWork.PushChanges();
+
             await _UnitOfWork.APIUserRepository.updateUserLoginTime(user);
+            await _UnitOfWork.PushChanges();
             return new UserDTO { Username = user.Username, Token = user.CurrentToken };
         }
         [HttpPost("verifyuseridentity")]
@@ -71,11 +73,11 @@ namespace POCloudAPI.Controllers
         {
 
             var user = await _UnitOfWork.APIUserRepository.getUserAsync(udto.Username);
-            if (udto.Token == user.CurrentToken) return Ok();
+
             if (user == null) return BadRequest("User " + udto.Username + " doesn't exist.");
             if (user.CurrentToken == null) return BadRequest("User " + udto.Username + " doesn't have a token present in DB.");
             if (udto.Token == null) return BadRequest("User " + udto.Username + " has no token present.");
-
+            if (udto.Token == user.CurrentToken) return Ok();
             return BadRequest("Invalid token.");
         }
 
