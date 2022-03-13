@@ -5,10 +5,7 @@ using POCloudAPI.Entities;
 using POCloudAPI.Extensions;
 using POCloudAPI.Middleware;
 
-// TODO add file removal -> create get for all file names and icons in API, then verify user identity (check if user owns file
-// -> userid = select (id) from users where id = userid and and filename == filename from Angular ) 
-// TODO only dislay login/register component if app is in development mode
-// tests
+
 var builder = WebApplication.CreateBuilder(args);
 
 // add services to the container
