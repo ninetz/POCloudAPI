@@ -24,7 +24,7 @@
 
 A valid microsoft sql server installation ( not needed if you intend to use different DB for datacontext ) -> add ConnectionString to appsettings so the API can connect to DB of your choice
 
-Dotnet Entity-framework ( dotnet tool install --global dotnet-ef ) -> open command line in root dir of API -> dotnet ef migrations add init -> dotnet ef database update -> this generates and updates your DB
+Dotnet Entity-framework ( dotnet tool install --global dotnet-ef ) -> open command line in root dir of API -> dotnet ef migrations add init -> this generates and updates your DB (or optionally if you have a migrations already )dotnet ef database update 
 
 MS visual studio with asp.net development installed ( install asp.net development in Visual Studio installer )
 
