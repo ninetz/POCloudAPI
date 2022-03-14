@@ -28,7 +28,7 @@ Dotnet Entity-framework ( dotnet tool install --global dotnet-ef ) -> open comma
 
 MS visual studio with asp.net development installed ( install asp.net development in Visual Studio installer )
 
-Angular (Install npm and run npm install -g @angular/cli ) -> open client folder and run ng serve in command line
+Angular (Install npm and run npm install -g @angular/cli ) -> open client folder -> npm install in command line ->  ng serve 
 
 
 <h2>Sample appsettings</h2>
