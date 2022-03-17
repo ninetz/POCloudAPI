@@ -30,7 +30,7 @@ MS visual studio with asp.net development installed ( install asp.net developmen
 
 Angular (Install npm and run npm install -g @angular/cli ) -> open client folder -> npm install in command line ->  ng serve 
 
-
+Create appsettings.json in root directory of project
 <h2>Sample appsettings</h2>
 
 {
