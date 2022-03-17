@@ -8,7 +8,6 @@ using POCloudAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// add services to the container
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddCors();
@@ -18,12 +17,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
 });
 
-// Configure the HTTP request pipeline
-
 var app = builder.Build();
 
-
-    //app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
 
@@ -51,7 +46,7 @@ var services = scope.ServiceProvider;
 try
 {
     var context = services.GetRequiredService<DataContext>();
-    //var userManager = services.GetRequiredService<UserManager<APIUser>>();
+
 }
 catch (Exception ex)
 {

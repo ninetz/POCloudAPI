@@ -28,7 +28,6 @@ namespace POCloudAPI.Controllers
             if (user == null) return BadRequest("User attempting to upload file doesn't exist.");
             if (!await _UnitOfWork.APIUserRepository.VerifyUserIdentity(fileDTO.Username,fileDTO.Token)) return BadRequest("Unable to verify user identity.");;
             if (fileDTO.FileAsBase64 == "") return BadRequest(string.Empty);
-            var fr = Convert.FromBase64String(fileDTO.FileAsBase64);
             var apiFile = new APIFile
             {
                 FullNameOfFile = fileDTO.FileName,
@@ -68,18 +67,10 @@ namespace POCloudAPI.Controllers
             if (apiFile == null) return BadRequest("File not found.");
             APIDownloadDTO APIFileDTO = new APIDownloadDTO
             {
-                // toto je decodnuty base64 z Ymxh na "bla" co je spravne
                 FileAsBase64 = Convert.FromBase64String(Encoding.Default.GetString(apiFile.FileStreamData)),
-                //FileAsBase64 = Encoding.Default.GetString(apiFile.FileStreamData),
                 FileName = apiFile.FullNameOfFile,
                 ContentType = apiFile.ContentType
             };
-
-            
-            //string fileString = Encoding.UTF8.GetString(apiFile.FileStreamData);
-            //var file = Convert.FromBase64String(fileString);
-            //using var stream = new MemoryStream(apiFile.FileStreamData);
-           //var formFile = new FormFile(stream, 0, stream.Length, apiFile.FullNameOfFile, apiFile.FullNameOfFile);
             return APIFileDTO;
         }
     }
