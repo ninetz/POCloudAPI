@@ -63,7 +63,6 @@ namespace POCloudAPI.Controllers
             user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(changePasswordDTO.NewPassword));
             user.PasswordSalt = hmac.Key;
             await _UnitOfWork.APIUserRepository.UpdateToken(user);
-
             await _UnitOfWork.APIUserRepository.updateUserLoginTime(user);
             await _UnitOfWork.PushChanges();
             return new UserDTO { Username = user.Username, Token = user.CurrentToken };
