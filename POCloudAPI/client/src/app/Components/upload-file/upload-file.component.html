@@ -2,31 +2,9 @@
        
        (change)="onFileSelected($event)" #fileUpload>
 
-<div class="file-upload">
 
-  {{fileName || "No file uploaded yet."}}
-
-  <button mat-mini-fab color="primary" class="upload-btn"
-          (click)="fileUpload.click()">
-    
-    Upload
-  </button>
-
-</div>
-
-<div class="progress">
-
-  <mat-progress-bar class="progress-bar" mode="determinate"
-                    [value]="uploadProgress" *ngIf="uploadProgress">
-
-  </mat-progress-bar>
-
-  <mat-icon class="cancel-upload" (click)="cancelUpload()"
-            *ngIf="uploadProgress">delete_forever</mat-icon>
-
-</div>
 <div class="row mt-5" *ngIf="FilesInDB.length > 0">
-  <ul class="text-danger">
+
     <li *ngFor="let fullNameOfFile of FilesInDB">
       {{fullNameOfFile}}
       <button mat-mini-fab color="primary" class="download-btn"
@@ -34,6 +12,6 @@
         Download
       </button>
     </li>
-  </ul>
+
 
 </div>
